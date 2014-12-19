@@ -2,8 +2,6 @@ class AppMoviesDevelopment < ActiveRecord::Migration
   
 	def self.up
 		create_table :users do |u|
-			u.string :email, :null => false
-			u.string :password, :null => false
 			u.timestamps
 		end
 
@@ -17,9 +15,10 @@ class AppMoviesDevelopment < ActiveRecord::Migration
 		create_join_table :users, :movies do |j|
 			j.integer :user_id, :null => false
 			j.integer :movie_id, :null => false
-			j.integer :etat, :null => false #0: Rien, 1: "À voir", 2: Vu
+			j.integer :etat, :null => false
 			j.timestamps
 		end
+
 	end
 
 end

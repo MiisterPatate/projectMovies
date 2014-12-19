@@ -38,4 +38,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
+# Pour pouvoir utiliser l'API Moviedb
 gem 'themoviedb'
+
+# Ajoute devise (gestion connexion)
+gem 'devise'
