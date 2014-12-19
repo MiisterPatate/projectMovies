@@ -38,7 +38,11 @@ GEM
     coffee-script-source (1.8.0)
     erubis (2.7.0)
     execjs (2.2.2)
+    hashugar (1.0.0)
     hike (1.2.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.11)
     jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
@@ -52,6 +56,7 @@ GEM
     mime-types (2.4.3)
     minitest (5.5.0)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     mysql2 (0.3.17)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -92,6 +97,9 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    themoviedb (0.0.24)
+      hashugar
+      httparty
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -106,6 +114,7 @@ GEM
       json (>= 1.8.0)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -116,6 +125,7 @@ DEPENDENCIES
   rails (= 4.1.8)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  themoviedb
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)
