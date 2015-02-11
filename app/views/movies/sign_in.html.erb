@@ -2,7 +2,6 @@
 
 <% if current_user.present? %>
 	<%= link_to "Deconnecter", destroy_user_session_url, :method => :delete %>
-	<%= Tmdb::Movie.popular %>
 <% else %>
 	<%= link_to "Login", user_session_url %>
 <% end %>
