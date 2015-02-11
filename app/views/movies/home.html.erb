@@ -1,5 +1,12 @@
 <h1>Film populaire</h1>
 
-<%= @new_trailers.each do |movie| %>
-	<%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") %>
-<% end %>	
+<!-- On boucle sur 10 films -->
+<% @movies.first(10).each do |movie| %>
+	<!-- Si il y a un ou plusieurs enregistrement(s) -->
+	<% if movie %>
+		<!-- On ajoute le lien vers le film + l'image d'affiche -->
+		<%= link_to movie_path(movie['id']) do %>
+			<%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") if movie['poster_path'] %>
+		<% end %>
+	<% end %>
+<% end %>
