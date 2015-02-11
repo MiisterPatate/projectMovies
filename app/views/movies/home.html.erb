@@ -1,10 +1,16 @@
-<h1>Film populaire</h1>
+<center>
+	<div>
+		<h1>Search for a movie</h1>
+		<%= form_tag("/search", :method => "get") do %>
+  		<%= text_field_tag(:query, nil, :class => "input-xlarge searchInput") %>
+		<% end %>
+	</div>
+</center>
 
-<!-- On boucle sur 10 films -->
-<% @movies.first(10).each do |movie| %>
-	<!-- Si il y a un ou plusieurs enregistrement(s) -->
+<h2>Now Playing</h2>
+
+<% @movies.first(15).each do |movie| %>
 	<% if movie %>
-		<!-- On ajoute le lien vers le film + l'image d'affiche -->
 		<%= link_to movie_path(movie['id']) do %>
 			<%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") if movie['poster_path'] %>
 		<% end %>

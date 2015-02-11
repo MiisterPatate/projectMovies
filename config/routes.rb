@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    resources :ideas, :movies
+    resources :ideas, :movies, :search
 
     devise_for :users
     # The priority is based upon order of creation: first created -> highest priority.
@@ -57,6 +57,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root :to =>'movies#home'
+  root :to => "movies#home"
   # get 'account/:id/favorite/movies' => 'movies#index'
+  get "search/index"
+  # match 'search' => "search#index"
 end
