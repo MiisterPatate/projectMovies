@@ -1,0 +1,5 @@
+<h1>Film populaire</h1>
+
+<%= @new_trailers.each do |movie| %>
+	<%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") %>
+<% end %>	

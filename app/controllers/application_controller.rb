@@ -10,10 +10,7 @@ class ApplicationController < ActionController::Base
 
 	def set_config
 		@configuration = Tmdb::Configuration.new
-		movie = Tmdb::Movie.detail(550)
-		#Tmdb::Movie.find("batman")
-		#Tmdb::Collection.find("spiderman")
-		#Tmdb::Genre.find("drama")
+
 	end
 
 end
