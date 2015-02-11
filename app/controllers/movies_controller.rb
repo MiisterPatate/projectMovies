@@ -9,7 +9,6 @@ class MoviesController < ApplicationController
 			#@img = Tmdb::Movie.detail(movie.name)
 			#@new_trailers.push(@img)
 		#end 
-	
 	end
 
 	def get_trailers
