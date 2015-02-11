@@ -14,10 +14,15 @@
 		<%= link_to movie_path(movie['id']) do %>
 			<%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") if movie['poster_path'] %>
 		<% end %>
+<<<<<<< HEAD
 
 		<% if user_signed_in? %>
 			<a href="#">À voir</a>
 			<a href="#">Vu</a>
 		<% end %>
+=======
+		<p>À voir</p>
+		<p>Vu</p>
+>>>>>>> FETCH_HEAD
 	<% end %>
 <% end %>

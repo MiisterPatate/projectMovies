@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
 			#@img = Tmdb::Movie.detail(movie.name)
 			#@new_trailers.push(@img)
 		#end 
+<<<<<<< HEAD
 
 		movie = Movie.where(:title => "anais") 
 		if movie.empty? 
@@ -24,6 +25,8 @@ class MoviesController < ApplicationController
 		current_user.save
 
 	
+=======
+>>>>>>> FETCH_HEAD
 	end
 
 
