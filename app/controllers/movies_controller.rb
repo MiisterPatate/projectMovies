@@ -5,6 +5,8 @@ class MoviesController < ApplicationController
 		#@new_trailers = Array.new
 		@movies = Tmdb::Movie.now_playing
 
+		@movieStatus = Tmdb::Movie.detail(params[:id])
+
 		#movies.each do |movie|
 			#@img = Tmdb::Movie.detail(movie.name)
 			#@new_trailers.push(@img)
