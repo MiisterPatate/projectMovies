@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219161215) do
+ActiveRecord::Schema.define(version: 20150211155656) do
 
   create_table "movies", force: true do |t|
     t.string   "title",       null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141219161215) do
     t.text     "url_cover",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "api_id",      null: false
   end
 
   create_table "movies_users", id: false, force: true do |t|
