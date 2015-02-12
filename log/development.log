@@ -4317,6 +4317,7 @@ NoMethodError (undefined method `movies' for nil:NilClass):
   Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
   Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
   Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.0ms)
+<<<<<<< HEAD
 
 
 Started GET "/" for 127.0.0.1 at 2015-02-12 09:20:05 +0100
@@ -18174,3 +18175,14 @@ Started GET "/assets/movies.js?body=1" for 127.0.0.1 at 2015-02-12 16:47:19 +010
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-12 16:47:19 +0100
+=======
+  [1m[36mActiveRecord::SchemaMigration Load (9.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AppMoviesDevelopment (20150211155656)
+  [1m[35m (400.0ms)[0m  ALTER TABLE `movies` ADD `api_id` int(11) NOT NULL
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (17.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150211155656')
+  [1m[36m (3.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+>>>>>>> FETCH_HEAD
