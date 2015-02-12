@@ -14,8 +14,6 @@
 		<%= link_to movie_path(movie['id']) do %>
 			<%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") if movie['poster_path'] %>
 		<% end %>
-<<<<<<< HEAD:app/views/home/index.html.erb
-
 
 		<% if user_signed_in? %>
 			<!-- A voir -->
@@ -24,13 +22,5 @@
 			<!-- Vu -->
 			<%= link_to "Vu", {:controller => "movies_users", :action => "add_watch",:user_id => current_user.id, :movie_id => movie['id'], :etat => 1 } %>
 		<% end %>
-
-=======
-
-		<% if user_signed_in? %>
-			<p>À voir</p>
-			<p>Vu</p>
-		<% end %>
->>>>>>> FETCH_HEAD:app/views/movies/home.html.erb
 	<% end %>
 <% end %>

@@ -1,5 +1,6 @@
 class MoviesUsersController < ApplicationController
 
+	# Action "À voir" ou "Vu"
 	def add_watch
 		id_user = params[:user_id]
 		id_movie = params[:movie_id]
@@ -11,12 +12,8 @@ class MoviesUsersController < ApplicationController
 			detail_movie = Tmdb::Movie.detail(id_movie)
 
 			movie = Movie.new(:title => detail_movie.title, :description => detail_movie.overview, :url_cover => detail_movie.poster_path, :api_id => id_movie)
-			movie.new_record?
-			true
 			movie.save
-			true
-			movie.new_record?
-			false
+
 		end
 
 		#--- Ajout d'une relation entre movies et users ---#
@@ -38,6 +35,31 @@ class MoviesUsersController < ApplicationController
 		end
 
 		redirect_to "/"
+
+	end
+
+	# Liste des films à voir ou vu
+	def movies_list
+		@movies_users_list = current_user.movies_users.where(:etat => 1)
+
+		@movies_viewed = Array.new
+
+		@movies_users_list.each do |movie|
+			if movie
+				@movies_viewed.push(Movie.where(:api_id => movie['movie_id']).first)
+			end
+		end
+
+
+		@movies_users_list = current_user.movies_users.where(:etat => 2)
+
+		@movies_to_see = Array.new
+
+		@movies_users_list.each do |movie|
+			if movie
+				@movies_to_see.push(Movie.where(:api_id => movie['movie_id']).first)
+			end
+		end
 
 	end
 

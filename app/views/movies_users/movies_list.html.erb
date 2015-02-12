@@ -1,0 +1,31 @@
+<h1>Movies liste</h1>
+
+
+<% if !@movies_viewed.empty? %>
+	<h2>Films vu</h2>
+	<% @movies_viewed.each do |movie| %>
+		<h3><%= movie.title %></h3>
+
+		<%= link_to movie_path(movie.api_id) do %>
+			<%= image_tag("#{@configuration.base_url}w154#{movie.url_cover}") if movie.url_cover %>
+		<% end %>
+
+		<hr />
+	<% end %>
+
+<% end %>
+<br />
+<hr />
+<% if !@movies_to_see.empty? %>
+	<h2>Films à voir</h2>
+	<% @movies_to_see.each do |movie| %>
+		<h3><%= movie.title %></h3>
+
+		<%= link_to movie_path(movie.api_id) do %>
+			<%= image_tag("#{@configuration.base_url}w154#{movie.url_cover}") if movie.url_cover %>
+		<% end %>
+
+		<hr />
+	<% end %>
+
+<% end %>

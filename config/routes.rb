@@ -58,7 +58,14 @@ Rails.application.routes.draw do
   #   end
 
   root :to => "home#index"
+
+  # Action "À voir" ou "Vu"
   get "movies_users/add_watch"
+
+  # Liste des films à voir ou vu
+  get "movies_users/movies_list"
+
+  # Recherche
   get "search/index"
-  # match 'search' => "search#index"
+
 end

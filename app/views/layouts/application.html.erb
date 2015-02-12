@@ -11,6 +11,9 @@
 
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
+  <!-- Liste des films à voir ou vu -->
+  <%= link_to "Liste des films", {:controller => "movies_users", :action => "movies_list", :user_id => current_user.id } %>
+
   Logged in as <strong><%= current_user.email %></strong>.
   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 <% else %>
