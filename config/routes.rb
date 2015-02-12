@@ -57,8 +57,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root :to => "movies#home"
-  # get 'account/:id/favorite/movies' => 'movies#index'
+  root :to => "home#index"
+  get "movies_users/add_watch"
   get "search/index"
   # match 'search' => "search#index"
 end
