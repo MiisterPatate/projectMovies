@@ -1,0 +1,21 @@
+<h2><%= @movie.title %></h2>
+
+<h4>Genre</h4>
+<% @movie.genres.each do |genre| %>
+	<%= genre['name'] %>
+<% end %>
+
+<%= image_tag("#{@configuration.base_url}w154#{@movie.poster_path}") if @movie.poster_path %>
+
+<h3>Date de sortie</h3>
+<%= @movie.release_date.to_date.strftime("%d/%m/%Y") if @movie.release_date %>
+
+<h3>Description</h3>
+<%= @movie.overview %>
+
+<% if !@trailers['youtube'].empty? %>
+	<h4>Voir la bande annonce</h4>
+	<% @trailers['youtube'].each do |trailer| %>
+		<%= link_to "#{trailer['name']} - #{trailer['size']}", "http://www.youtube.com/watch?v=#{trailer['source']}" %><br />
+	<% end %>
+<% end %>

@@ -1,4 +1,14 @@
 class MoviesController < ApplicationController
+<<<<<<< HEAD
+
+	def show
+	  	@movie = Tmdb::Movie.detail(params[:id])
+	  	@images = Tmdb::Movie.images(params[:id])
+	  	@cast = Tmdb::Movie.casts(params[:id])
+	  	@trailers = Tmdb::Movie.trailers(params[:id])
+  		@similar_movies = Tmdb::Movie.similar_movies(params[:id])
+  	end
+=======
 	
 	def home
 
@@ -44,6 +54,7 @@ class MoviesController < ApplicationController
 		current_user.movie << movie #[movie, movie2]
 		current_user.save
 	end
+>>>>>>> FETCH_HEAD
 
 
 	def get_trailers
