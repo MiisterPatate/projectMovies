@@ -66,7 +66,7 @@ class MoviesUsersController < ApplicationController
 		end
 
 		# On redirige
-		redirect_to "/"
+		redirect_to :back
 
 	end
 
