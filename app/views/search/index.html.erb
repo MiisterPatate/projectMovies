@@ -1,24 +1,33 @@
-<table class="table table-bordered table-striped table-hover">
-	<% @movies.each do |movie| %>
-		<tr>
-			<td>
-				<h1><%= movie.title %>(<%= movie.release_date %>)</h1>
+<div class="container">
+
+		<% @movies.each do |movie| %>
+			<div class="content">
 				<%= link_to movie_path(movie.id) do %>
 					<%= image_tag("#{@configuration.base_url}w154#{movie.poster_path}") if movie.poster_path %>
 				<% end %>
-			</td>
-			
-			<% # Si l'utilisateur est connecté on propose les liens "À voir" et "Vu" %>
-			<% if user_signed_in? %>
-				<td>
-				<!-- A voir -->
-				<%= link_to "À voir", {:controller => "movies_users", :action => "add_watch",:user_id => current_user.id, :movie_id => movie.id, :etat => 2 } %>
 
-				<!-- Vu -->
-				<%= link_to "Vu", {:controller => "movies_users", :action => "add_watch",:user_id => current_user.id, :movie_id => movie.id, :etat => 1 } %>
-				</td>
-			<% end %>
-			
-		</tr>
-	<% end %>
-</table>
+				<h2><%= movie.title %>(<%= movie.release_date %>)</h2>
+				Directors: <% Tmdb::Movie.crew(movie.id).each do |crew| %> <% if crew['department'] == 'Directing' %> <%= link_to crew['name'], person_path(crew['id']) %> <% end %><% end %><br />
+			Writers:
+			Starring: <% Tmdb::Movie.casts(movie.id).first(3).each do |cast| %> <%= link_to cast['name'], person_path(cast['id']) %> | <% end %>
+
+				<% # Si l'utilisateur est connecté on propose les liens "À voir" et "Vu" %>
+				<% if user_signed_in? %>
+					<ul class="addList">
+						<li>
+
+							<!-- A voir -->
+							<%= link_to "À voir", {:controller => "movies_users", :action => "add_watch",:user_id => current_user.id, :movie_id => movie.id, :etat => 2 } %>
+						</li>
+						<li>
+							<!-- Vu -->
+							<%= link_to "Vu", {:controller => "movies_users", :action => "add_watch",:user_id => current_user.id, :movie_id => movie.id, :etat => 1 } %>
+						</li>
+					</ul>
+				<% end %>
+
+			</div>
+				
+		<% end %>
+
+</div>
