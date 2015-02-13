@@ -30526,3 +30526,10 @@ Processing by MoviesController#show as HTML
   [1m[35mUser Load (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
   Rendered movies/show.html.erb within layouts/application (189.0ms)
 Completed 200 OK in 712ms (Views: 289.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-13 16:52:08 +0100
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (2.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (297.0ms)
+Completed 200 OK in 650ms (Views: 420.0ms | ActiveRecord: 2.0ms)
