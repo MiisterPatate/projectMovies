@@ -1,21 +1,80 @@
-<h2><%= @movie.title %></h2>
+<% 
+# ********************************* #
+# 	1. Affiche et détail du film
+#
+# ********************************* #
+%>
 
-<h4>Genre</h4>
-<% @movie.genres.each do |genre| %>
-	<%= genre['name'] %>
-<% end %>
+<center>
+	<div>
+		<h1><%= @movie.title %></h1>
 
-<%= image_tag("#{@configuration.base_url}w154#{@movie.poster_path}") if @movie.poster_path %>
+		<% # Genres
+		if !@movie.genres.empty? %>
+			<p>
+				<% # On compte le nombre de genre
+				nb_genre = @movie.genres.length %>
 
-<h3>Date de sortie</h3>
-<%= @movie.release_date.to_date.strftime("%d/%m/%Y") if @movie.release_date %>
+				<strong>Genre<% if nb_genre > 1 %>s<%end %> : </strong>
+				
+				<% # On initialise un compteur pour séparer les enregistrements par des ","
+				init_count = 0
 
-<h3>Description</h3>
-<%= @movie.overview %>
+				@movie.genres.each do |genre|
+					if genre
+						init_count += 1
 
-<% if !@trailers['youtube'].empty? %>
-	<h4>Voir la bande annonce</h4>
-	<% @trailers['youtube'].each do |trailer| %>
-		<%= link_to "#{trailer['name']} - #{trailer['size']}", "http://www.youtube.com/watch?v=#{trailer['source']}" %><br />
-	<% end %>
-<% end %>
+						if init_count != nb_genre
+							separator = ", "
+						else
+							separator = "."
+						end %>
+
+						<%= # On affiche le genre avec le séparateur "," ou "."
+						genre['name']+separator %>
+					<% end
+				end %>
+			</p>
+		<% end %>
+
+		<%= # Image 
+			image_tag("#{@configuration.base_url}w154#{@movie.poster_path}") if @movie.poster_path
+		%>
+
+		<% # Date de sortie
+		if @movie.release_date %>
+			<p>
+				<strong>Release date : </strong>
+				<%= @movie.release_date.to_date.strftime("%d/%m/%Y") %>
+			</p>
+		<% end %>
+
+
+		<% # Description
+		if @movie.overview %>
+			<p>
+				<strong>Overview : </strong>
+				<%= @movie.overview %>
+			</p>
+		<% end %>
+
+		<% # Bande annonce
+		if !@trailers['youtube'].empty? %>
+			<strong>Watch trailer : </strong><br /><br />
+			<% @trailers['youtube'].each do |trailer| %>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= trailer['source'] %>" frameborder="0" allowfullscreen></iframe>
+			<% end %>
+		<% end %>
+
+		<% # Si l'utilisateur est connecté on propose les liens "À voir" et "Vu" %>
+		<% if user_signed_in? %>
+			<td>
+			<!-- A voir -->
+			<%= link_to "À voir", {:controller => "movies_users", :action => "add_watch",:user_id => current_user.id, :movie_id => @movie.id, :etat => 2 } %>
+
+			<!-- Vu -->
+			<%= link_to "Vu", {:controller => "movies_users", :action => "add_watch",:user_id => current_user.id, :movie_id => @movie.id, :etat => 1 } %>
+			</td>
+		<% end %>
+	</div>
+</center>

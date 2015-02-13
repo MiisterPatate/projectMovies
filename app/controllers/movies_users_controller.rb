@@ -1,63 +1,90 @@
 class MoviesUsersController < ApplicationController
 
-	# Action "À voir" ou "Vu"
+	# ***************************** #
+	# 	1. Action "À voir" ou "Vu" 
+	#
+	# ***************************** #
 	def add_watch
+		# Récupération des ID de l'user connecté et de la movie ainsi que l'état "À voir" ou "Vu"
 		id_user = params[:user_id]
 		id_movie = params[:movie_id]
-		etat = params[:etat]
+		etat = params[:etat] # Dans la base de donnée, état 1 : Vu - état 2 : À voir
 
-		#--- Ajout du film dans la table movies ---#
-		movie = Movie.where(:api_id => id_movie) 
+
+		# ***************************** #
+		# 	1.1 Ajout du film dans la table movies
+		#
+		# ***************************** #
+		movie = Movie.where(:api_id => id_movie) # Vérifie si le film n'existe pas déjà en BDD
+		
 		if movie.empty? 
+			# Récupère les données du film dans l'API
 			detail_movie = Tmdb::Movie.detail(id_movie)
 
-			movie = Movie.new(:title => detail_movie.title, :description => detail_movie.overview, :url_cover => detail_movie.poster_path, :api_id => id_movie)
-			movie.save
+			# Enregistre le film dans la table movies
+			movie = Movie.new(
+				:title => detail_movie.title,
+				:description => detail_movie.overview,
+				:url_cover => detail_movie.poster_path,
+				:api_id => id_movie
+			)
 
+			movie.save
 		end
 
-		#--- Ajout d'une relation entre movies et users ---#
-		# Test si on trouve une ligne avec l'user courant + l'id de la movie
+
+		# ***************************** #
+		# 	1.2 Ajout d'une relation entre movies et users
+		#
+		# ***************************** #
+		# Vérifie si le film n'est pas déjà lié à l'utilisateur courant dans la table movies_users
 		user_movie = current_user.movies_users.where(:movie_id => id_movie).first
 		
-		# Test comme ci-dessous avec l'état en +. Pour passer l'état de "A voir" à "Vu"
+		# Même vérification qu'au dessus + si l'état du film correspond à l'état qu'on lui demande d'avoir
+		# Afin d'éviter des doublons
 		user_movie_etat = current_user.movies_users.where(:movie_id => id_movie, :etat => etat)
 		
+		# Si le film n'est pas lié à l'utilisateur courant
 		if user_movie.nil?
 
-			user_movie = MoviesUser.new(:user_id => id_user, :movie_id => id_movie, :etat => etat)
+			# Enregistre la relation entre le film  et l'utilisateur dans la table movies_users
+			user_movie = MoviesUser.new(
+				:user_id => id_user,
+				:movie_id => id_movie,
+				:etat => etat
+			)
+
 			user_movie.save
-			
+		
+		# Si le film est lié à l'utilisateur mais que l'état qu'on lui demande d'avoir est différent de celui qui est déjà enregistré
+		# Par exemple l'état actuel est "À voir" et l'utilisateur clique sur "Vu"
 		elsif user_movie_etat.empty?
 
+			# On met à jour le nouvel état
 			user_movie.update_attributes( etat: etat )
 
 		end
 
+		# On redirige
 		redirect_to "/"
 
 	end
 
 	# Liste des films à voir ou vu
 	def movies_list
-		@movies_users_list = current_user.movies_users.where(:etat => 1)
+		# Liste des films liés à l'utilisateur courant (table movies_users)
+		# Order by À voir puis Vu
+		@movies_users = current_user.movies_users.order("etat DESC")
 
-		@movies_viewed = Array.new
+		# Liste des films
+		@movies = Array.new
 
-		@movies_users_list.each do |movie|
+		@movies_users.each do |movie|
 			if movie
-				@movies_viewed.push(Movie.where(:api_id => movie['movie_id']).first)
-			end
-		end
-
-
-		@movies_users_list = current_user.movies_users.where(:etat => 2)
-
-		@movies_to_see = Array.new
-
-		@movies_users_list.each do |movie|
-			if movie
-				@movies_to_see.push(Movie.where(:api_id => movie['movie_id']).first)
+				
+				# Récupère la liste des films dans la table movies
+				@movies.push(Movie.where(:api_id => movie['movie_id']).first)
+				
 			end
 		end
 

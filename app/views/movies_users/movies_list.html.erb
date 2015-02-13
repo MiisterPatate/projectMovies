@@ -1,29 +1,29 @@
 <h1>Movies liste</h1>
 
 
-<% if !@movies_viewed.empty? %>
-	<h2>Films vu</h2>
-	<% @movies_viewed.each do |movie| %>
+<% if !@movies.empty? %>
+	<% old_etat = nil %>
+
+	<% @movies.each do |movie| %>
+
+		<% etat = current_user.get_user_movie(movie).etat %>
+
+		<% # Si l'état du film affiché au dessus est différent de l'état du film courant : on change le titre
+		if old_etat != etat %>
+			<% if etat == 1 %>
+				<h2 style="color: blue;">Films vu</h2>
+			<% elsif etat == 2 %>
+				<h2 style="color: red;">Films à voir</h2>
+			<% end %>
+		<% end %>
+
 		<h3><%= movie.title %></h3>
 
 		<%= link_to movie_path(movie.api_id) do %>
 			<%= image_tag("#{@configuration.base_url}w154#{movie.url_cover}") if movie.url_cover %>
 		<% end %>
 
-		<hr />
-	<% end %>
-
-<% end %>
-<br />
-<hr />
-<% if !@movies_to_see.empty? %>
-	<h2>Films à voir</h2>
-	<% @movies_to_see.each do |movie| %>
-		<h3><%= movie.title %></h3>
-
-		<%= link_to movie_path(movie.api_id) do %>
-			<%= image_tag("#{@configuration.base_url}w154#{movie.url_cover}") if movie.url_cover %>
-		<% end %>
+		<% old_etat = etat %>
 
 		<hr />
 	<% end %>
