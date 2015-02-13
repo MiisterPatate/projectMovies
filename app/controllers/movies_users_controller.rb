@@ -66,7 +66,7 @@ class MoviesUsersController < ApplicationController
 		end
 
 		# On redirige
-		redirect_to :back
+		redirect_to "/movies/"+id_movie
 
 	end
 

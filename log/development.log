@@ -40755,3 +40755,125 @@ Processing by SearchController#index as HTML
   [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
   Rendered search/index.html.erb within layouts/application (7613.7ms)
 Completed 200 OK in 7871ms (Views: 7676.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-13 16:56:43 +0100
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (1.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (225.0ms)
+Completed 200 OK in 794ms (Views: 470.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/ideas.css?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/movies.css?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/movies.js?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/ideas.js?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-13 16:56:44 +0100
+
+
+Started GET "/assets/home.png" for 127.0.0.1 at 2015-02-13 16:56:45 +0100
+
+
+Started GET "/assets/remove_user.png" for 127.0.0.1 at 2015-02-13 16:56:45 +0100
+
+
+Started GET "/assets/list.png" for 127.0.0.1 at 2015-02-13 16:56:45 +0100
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-13 16:57:09 +0100
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (248.0ms)
+Completed 200 OK in 593ms (Views: 371.0ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/ideas.css?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/movies.css?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/ideas.js?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/movies.js?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/remove_user.png" for 127.0.0.1 at 2015-02-13 16:57:10 +0100
+
+
+Started GET "/assets/list.png" for 127.0.0.1 at 2015-02-13 16:57:11 +0100
+
+
+Started GET "/assets/home.png" for 127.0.0.1 at 2015-02-13 16:57:11 +0100
+
+
+Started GET "/movies_users/add_watch?etat=2&movie_id=206296&user_id=1" for 127.0.0.1 at 2015-02-13 16:57:12 +0100
+Processing by MoviesUsersController#add_watch as HTML
+  Parameters: {"etat"=>"2", "movie_id"=>"206296", "user_id"=>"1"}
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM `movies`  WHERE `movies`.`api_id` = 206296
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (30.0ms)[0m  INSERT INTO `movies` (`api_id`, `created_at`, `title`, `updated_at`, `url_cover`) VALUES (206296, '2015-02-13 15:57:12', 'The Last 5 Years', '2015-02-13 15:57:12', '/5ZVsMEDswVsJB4MviX9Yp43Nw4I.jpg')
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mMoviesUser Load (0.0ms)[0m  [1mSELECT  `movies_users`.* FROM `movies_users`  WHERE `movies_users`.`user_id` = 1 AND `movies_users`.`movie_id` = 206296  ORDER BY `movies_users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `movies_users` (`created_at`, `etat`, `movie_id`, `updated_at`, `user_id`) VALUES ('2015-02-13 15:57:12', 2, 206296, '2015-02-13 15:57:12', 1)[0m
+  [1m[35m (2.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/movies/206296
+Completed 302 Found in 320ms (ActiveRecord: 67.0ms)
+
+
+Started GET "/movies/206296" for 127.0.0.1 at 2015-02-13 16:57:12 +0100
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"206296"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendered movies/show.html.erb within layouts/application (287.0ms)
+Completed 200 OK in 814ms (Views: 396.0ms | ActiveRecord: 1.0ms)
