@@ -1,31 +1,37 @@
-<h1>Movies liste</h1>
+<div class="container">
+	<h1>Movies liste</h1>
 
 
-<% if !@movies.empty? %>
-	<% old_etat = nil %>
+	<% if !@movies.empty? %>
+		<% old_etat = nil %>
 
-	<% @movies.each do |movie| %>
+		<% @movies.each do |movie| %>
 
-		<% etat = current_user.get_user_movie(movie).etat %>
+			<% etat = current_user.get_user_movie(movie).etat %>
 
-		<% # Si l'état du film affiché au dessus est différent de l'état du film courant : on change le titre
-		if old_etat != etat %>
-			<% if etat == 1 %>
-				<h2 style="color: blue;">Films vu</h2>
-			<% elsif etat == 2 %>
-				<h2 style="color: red;">Films à voir</h2>
+			<% # Si l'état du film affiché au dessus est différent de l'état du film courant : on change le titre
+			if old_etat != etat %>
+				<% if etat == 1 %>
+					<h2>Films vu</h2>
+				<% elsif etat == 2 %>
+					<h2>Films à voir</h2>
+				<% end %>
 			<% end %>
+
+
+			<div class="content">
+
+			<%= link_to movie_path(movie.api_id) do %>
+				<%= image_tag("#{@configuration.base_url}w154#{movie.url_cover}") if movie.url_cover %>
+			<% end %>
+
+			<h2><%= movie.title %></h2>
+			<h3>Overage : <%= truncate(movie.description, :length => 280, :omission => '... Read more') %></h3>
+
+			<% old_etat = etat %>
+
+			</div>	
 		<% end %>
 
-		<h3><%= movie.title %></h3>
-
-		<%= link_to movie_path(movie.api_id) do %>
-			<%= image_tag("#{@configuration.base_url}w154#{movie.url_cover}") if movie.url_cover %>
-		<% end %>
-
-		<% old_etat = etat %>
-
-		<hr />
 	<% end %>
-
-<% end %>
+</div>
